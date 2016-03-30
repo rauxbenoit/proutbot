@@ -91,11 +91,11 @@ class ProutBot {
 				$strTumblrPostUrl = 'http://' . $strTumblrUrl . '/api/read/?&start=' . $intStart . '&num=' . $intNum . '&type=photo';
 				$arrXml = simplexml_load_file($strTumblrPostUrl);
 				for ($i = 0; $i < count($arrXml->posts->post); $i++) {
-						$strImgUrl = (string)$arrXml->posts->post[$i]->{'photo-url'}[0];
-						if(!empty($strImgUrl)){
-							$argRequest = $this->apiRequest("sendMessage", array('chat_id' => $objUpdate->message->chat->id, "text" => $strImgUrl));
-							sleep(1);
-						}
+					$strImgUrl = (string)$arrXml->posts->post[$i]->{'photo-url'}[0];
+					if(!empty($strImgUrl)){
+						$argRequest = $this->apiRequest("sendMessage", array('chat_id' => $objUpdate->message->chat->id, "text" => $strImgUrl));
+						sleep(1);
+					}
 				}
 			break;
 			case 'hello':
