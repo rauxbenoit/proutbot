@@ -106,6 +106,18 @@ class ProutBot {
 				}
 				$argRequest = $this->apiRequest("sendMessage", array('chat_id' => $objUpdate->message->chat->id, "text" => (!empty($objUpdate->message->from->username)?$objUpdate->message->from->username:'l\'idiot qui n\'a pas set son username') . ' vous souhaite bien le bonjour ^^'));
 			break;
+			case 'blague':
+				$str = '';
+				$strHtml = file_get_contents('http://humour-blague.com/blagues-2/index.php');
+				preg_match('/<p align="left" class="blague">(.*?)<\/p>/s', $strHtml, $arrMatches);
+				$str = trim(html_entity_decode(strip_tags($arrMatches[1])));
+				$str = str_replace("\t",'',$str);
+				$str = str_replace('  ','' ,$str);
+				print_r($str);
+				if(!empty($str)){
+					$argRequest = $this->apiRequest("sendMessage", array('chat_id' => $objUpdate->message->chat->id, "text" => $str));
+				}
+			break;
 			default:
 				//$argRequest = $this->apiRequest("sendMessage", array('chat_id' => $objUpdate->message->chat->id, "text" => 'Et un prout foiré de ' . $objUpdate->message->from->username . ' !'));
 			break;
