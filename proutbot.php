@@ -1,4 +1,5 @@
 <?php
+chdir(dirname(__FILE__));
 class ProutBot {
 
 	private $strUrlApi = 'https://api.telegram.org';
@@ -113,7 +114,6 @@ class ProutBot {
 				$str = trim(html_entity_decode(strip_tags($arrMatches[1])));
 				$str = str_replace("\t",'',$str);
 				$str = str_replace('  ','' ,$str);
-				print_r($str);
 				if(!empty($str)){
 					$argRequest = $this->apiRequest("sendMessage", array('chat_id' => $objUpdate->message->chat->id, "text" => $str));
 				}
