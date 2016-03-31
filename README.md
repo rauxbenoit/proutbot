@@ -36,4 +36,6 @@ WantedBy=multi-user.target
 
 
 sudo service proutbot start
-systemctl status proutbot.service
+sudo systemctl status proutbot.service
+
+sudo systemctl enable proutbot
