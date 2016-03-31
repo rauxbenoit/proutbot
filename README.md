@@ -17,5 +17,23 @@ prout - Fais un prout
 caca - Fais un caca
 help - Demandes de l'aide
 
-# Simple lancement manuel via terminal
+# Simple lancement manuel via terminal dans le repertoire du bot
 watch -n 5 php proutbot.php
+
+# Instalation en tant que service (Ubuntu 15.10) (/data/bots/proutbot/)
+sudo vim /etc/systemd/system/proutbot.service
+
+[Unit]
+Description=ProutBot
+
+[Service]
+ExecStart=/usr/bin/php /data/bots/proutbot/proutbot.php
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo service proutbot start
+systemctl status proutbot.service
